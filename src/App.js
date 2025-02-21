@@ -1,7 +1,5 @@
-import Directory from './component/directory/directory-component';
-
+import Directory from "./component/directory/directory-component";
 const App= () => {
-
   const categories = [
     {
       "id": 1,
@@ -27,12 +25,12 @@ const App= () => {
       "id": 5,
       "title": "mens",
       "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
-    }
-  ]
+    },
+  ];
   
 
-  return 
-    <Directory categories= {categories}/>;
-}
+  return <Directory categories={categories} />
+
+};
 
 export default App;
