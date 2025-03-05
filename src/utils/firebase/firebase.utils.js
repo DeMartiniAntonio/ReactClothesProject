@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut
 } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
@@ -24,7 +25,7 @@ const firebaseConfig = {
   const googleProvider = new GoogleAuthProvider();
   
   googleProvider.setCustomParameters({
-    prompt: 'select_account',
+    prompt: "select_account",
   });
   
   export const auth = getAuth();
@@ -41,7 +42,7 @@ const firebaseConfig = {
   ) => {
     if (!userAuth) return;
   
-    const userDocRef = doc(db, 'users', userAuth.uid);
+    const userDocRef = doc(db, "users", userAuth.uid);
   
     const userSnapshot = await getDoc(userDocRef);
   
@@ -57,7 +58,7 @@ const firebaseConfig = {
           ...additionalInformation,
         });
       } catch (error) {
-        console.log('error creating the user', error.message);
+        console.log("error creating the user", error.message);
       }
     }
   
@@ -75,3 +76,5 @@ const firebaseConfig = {
   
     return await signInWithEmailAndPassword(auth, email, password);
   };
+  
+  export const signOutUser = async () => await signOut(auth);
