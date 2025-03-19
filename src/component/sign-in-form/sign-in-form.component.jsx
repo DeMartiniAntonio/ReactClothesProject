@@ -26,23 +26,10 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
-      //setCurrentUser(user);
     } catch (error) {
-      switch (error.code) {
-        case 'auth/wrong-password':
-          alert('incorrect password for email');
-          break;
-        case 'auth/user-not-found':
-          alert('no user associated with this email');
-          break;
-        default:
-          console.log(error);
-      }
+      console.log('user sign in failed', error);
     }
   };
 

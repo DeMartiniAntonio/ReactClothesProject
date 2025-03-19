@@ -1,19 +1,17 @@
-import {Outlet, Link} from 'react-router'
+import {Outlet} from 'react-router'
 import { Fragment, useContext } from 'react';
-import { UserContext } from '../../../context/user.context';
 import { CartContext } from '../../../context/cart.context';
-
+import {selectCurrentUser} from '../../../store/user/user.selector'
 import {ReactComponent as CrwnLogo} from '../../../assets/crown.svg';
 import { NavigationContainer, NavLink, NavLinks, LogoContainer } from './navigation.style';
-
+import { useSelector } from 'react-redux';
 import { signOutUser } from '../../../utils/firebase/firebase.utils';
 import CartIcon from '../../cart-icon/cart-icon.component';
 import CartDropdown from '../../cart-dropdown/cart-dropdown.component';
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
-
 
   return (
     <Fragment>
@@ -32,7 +30,7 @@ const Navigation = () => {
               SIGN OUT{' '}
             </NavLink>
           ) : (
-            <NavLink to='/authentication'>
+            <NavLink to='/auth'>
               SIGN IN
             </NavLink>
           )}
